@@ -1,1 +1,1 @@
-module.exports = require('./lzma-file');
+module.exports = require('./sc-compression');
