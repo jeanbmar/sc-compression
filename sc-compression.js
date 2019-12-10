@@ -86,7 +86,7 @@ class ScCompression {
     }
 
     static readSignature(buffer) {
-        if (Buffer.compare(buffer.slice(0, 4), Buffer.from('5d000004', 'hex')) === 0) {
+        if (Buffer.compare(buffer.slice(0, 3), Buffer.from('5d0000', 'hex')) === 0) {
             return signatures.LZMA;
         } else if (buffer.slice(0, 2).toString('utf8').toLowerCase() === 'sc') {
             if (buffer.length >= 30 && buffer.slice(26, 30).toString('utf8').toLowerCase() === 'sclz') {
