@@ -19,11 +19,14 @@ The module automatically finds the right signature when decompress function is c
 ## Example
 ```javascript
 const { readdirSync, readFileSync, writeFileSync } = require('fs');
+const { resolve } = require('path');
 const ScCompression = require('sc-compression');
 
-readdirSync('coc-13.0.4/logic/').forEach((file) => {
-    const buffer = readFileSync(file);
-    writeFileSync(file, ScCompression.decompress(buffer));
+const directory = 'coc-13.0.4/logic';
+readdirSync(directory).forEach((file) => {
+    const filepath = resolve(directory, file);
+    const buffer = readFileSync(filepath);
+    writeFileSync(filepath, ScCompression.decompress(buffer));
 });
 ```
 See tests for additional examples.
