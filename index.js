@@ -1,1 +1,1 @@
-module.exports = require('./sc-compression');
+module.exports = require('./src/sc-compression');

@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs-extra');
 const { resolve } = require('path');
-const ScCompression = require('../sc-compression');
+const ScCompression = require('../');
 
 const csv = "\"Barbarian\",,,,,,,,,,,,,,\n" +
     ",\"Name\",\"HasDirections\",\"VariationWeight\",\"ActionFrame\",\"ExportName\",\"Looping\",\"StopToLast\",,,,,,,\n" +

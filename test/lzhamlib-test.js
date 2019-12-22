@@ -1,6 +1,6 @@
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
-const lzham = require('../lzham');
+const lzham = require('../src/lzham');
 
 const buffer = Buffer.from('Good morning Dr. Chandra. This is Hal. I am ready for my first lesson.'
     + 'Good morning Dr. Chandra. This is Hal. I am ready for my first lesson.'
