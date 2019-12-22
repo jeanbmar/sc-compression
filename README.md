@@ -29,4 +29,10 @@ readdirSync(directory).forEach((file) => {
     writeFileSync(filepath, ScCompression.decompress(buffer));
 });
 ```
-See tests for additional examples.
+See tests for additional implementation examples.
+## Step by step guide for non-developers
+  - Make sure you have Node.js installed (https://nodejs.org/en/)
+  - Run ``npm install -g sc-compression`` in a terminal
+  - Download examples/decompress.js from this repository
+  - Run ``node decompress.js`` in a terminal
+  
