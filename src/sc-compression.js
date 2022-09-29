@@ -27,7 +27,11 @@ class ScCompression {
             const decompress = forceSync(lzmaDecompress);
             return decompress([padded]);
         } else if (signature === signatures.SC) {
-            buffer = buffer.slice(26);
+            if(buffer.readInt32BE(2) >= 4){
+                buffer = buffer.slice(30);
+            }else{
+                buffer = buffer.slice(26);
+            }
             const uncompressedSize = buffer.readInt32LE(5);
             const padded = Buffer.concat([
                 buffer.slice(0, 9),

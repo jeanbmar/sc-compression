@@ -21,6 +21,14 @@ describe('ScCompression tests', function() {
         const buffer = readFileSync(resolve(__dirname, 'sc-test.sc'));
         console.log(ScCompression.decompress(buffer).toString('hex'));
     });
+    it('scv4', function () {
+        const buffer = readFileSync(resolve(__dirname, 'sc-test-v4.sc'));
+        console.log(ScCompression.decompress(buffer).toString('hex'));
+    });
+    it('scv4+enblock', function () {
+        const buffer = readFileSync(resolve(__dirname, 'sc-test-endblock.sc'));
+        console.log(ScCompression.decompress(buffer).toString('hex'));
+    });
     it('sclz', function () {
         const buffer = readFileSync(resolve(__dirname, 'sclz-test.sc'));
         console.log(ScCompression.decompress(buffer).toString('hex'));
