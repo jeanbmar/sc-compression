@@ -1,38 +1,51 @@
-# sc-compression
-This module allows you to compress and decompress Supercell assets. It supports the following signatures:
+# Sc Compression
+This module is intended to compress and decompress Supercell assets.  
+It supports the following signatures:
+  - `'none'`: non-compressed file
+  - `'lzma'`: starts with bytes 0x5d0000
+  - `'sc'`: starts with "SC"
+  - `'sc2'`: starts with "SC" and contains "START"
+  - `'sclz'`: starts with "SC" and contains "SCLZ"
+  - `'sig'`: starts with "Sig:"
 
-| Value | Signature |                          Comment |
-|------|:----------|:---------------------------------|
-|    0 | NONE      | Regular non-compressed file      |
-|    1 | LZMA      | Starts with 5d 00 00             |
-|    2 | SC        | Starts with SC                   |
-|    3 | SCLZ      | Starts with SC and contains SCLZ |
-|    4 | SIG       | Starts with Sig:                 |
-
-The module automatically finds the right signature when decompress function is called.
+The module automatically infers the right signature when `decompress` is called.
 ## Install
-``npm install git+https://github.com/FourCinnamon0/sc-compression.git``
-## Available methods
-  - decompress(buffer) - returns a Buffer
-  - compress(buffer, signature) - returns a Buffer
-  - readSignature(buffer) - returns a file signature as a Number
+`npm install sc-compression`
+## API Reference
+### `decompress(buffer)`
+Decompress a file buffer.
+- `buffer` <Buffer\> A compressed file that was read into a Node.js Buffer
+- Returns: <Buffer\> A decompressed file buffer that can be written to disk
+
+### `compress(buffer, signature)`
+Compress a file buffer.
+- `buffer` <Buffer\> A file that was read into a Node.js Buffer
+- `signature` <string\> `'lzma'`, `'sc'`, `'sclz'` or `'sig'`. It is impossible to recompress an `sig` file with a valid hash, so attempting to load an `sig` file in an unpatched game client will crash.
+- Returns: <Buffer\> A compressed file buffer that can be written to disk
+
+### `readSignature(buffer)`
+Read a compressed file signature.
+- `buffer` <Buffer\> A compressed file that was read into a Node.js Buffer
+- Returns: <string\> The file signature
+
 ## Example
-```javascript
-const { readdirSync, readFileSync, writeFileSync } = require('fs');
-const { resolve } = require('path');
-const ScCompression = require('sc-compression');
+```js
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { decompress } from 'sc-compression';
 
 const directory = 'coc-13.0.4/logic';
 readdirSync(directory).forEach((file) => {
     const filepath = resolve(directory, file);
     const buffer = readFileSync(filepath);
-    writeFileSync(filepath, ScCompression.decompress(buffer));
+    writeFileSync(filepath, decompress(buffer));
 });
 ```
 See tests for additional implementation examples.
+
 ## Step by step guide for non-developers
   - Make sure you have Node.js installed (https://nodejs.org/en/)
   - Run ``npm install -g sc-compression`` in a terminal
-  - Download examples/decompress.js from this repository
-  - Run ``node decompress.js`` in a terminal
+  - Download examples/decompress.mjs from this repository
+  - Run ``node decompress.mjs`` in a terminal
   
