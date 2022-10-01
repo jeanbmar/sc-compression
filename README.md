@@ -1,12 +1,15 @@
 # Sc Compression
 This module is intended to compress and decompress Supercell assets.  
 It supports the following signatures:
-  - `'none'`: non-compressed file
-  - `'lzma'`: starts with bytes 0x5d0000
-  - `'sc'`: starts with "SC"
-  - `'sc2'`: starts with "SC" and contains "START"
-  - `'sclz'`: starts with "SC" and contains "SCLZ"
-  - `'sig'`: starts with "Sig:"
+
+| signature | description |
+| --- | --- |
+| `'none'` | non-compressed file |
+| `'lzma'` | starts with bytes 0x5d0000 |
+| `'sc'` | starts with "SC" |
+| `'sc2'` | starts with "SC" and contains "START" |
+| `'sclz'` | starts with "SC" and contains "SCLZ" |
+| `'sig'` | starts with "Sig:" |
 
 The module automatically infers the right signature when `decompress` is called.
 ## Install
@@ -15,13 +18,13 @@ The module automatically infers the right signature when `decompress` is called.
 ### `decompress(buffer)`
 Decompress a file buffer.
 - `buffer` <Buffer\> A compressed file that was read into a Node.js Buffer
-- Returns: <Buffer\> A decompressed file buffer that can be written to disk
+- Returns: <Promise<Buffer\>\> A decompressed file buffer that can be written to disk
 
 ### `compress(buffer, signature)`
 Compress a file buffer.
 - `buffer` <Buffer\> A file that was read into a Node.js Buffer
 - `signature` <string\> `'lzma'`, `'sc'`, `'sclz'` or `'sig'`. It is impossible to recompress an `sig` file with a valid hash, so attempting to load an `sig` file in an unpatched game client will crash.
-- Returns: <Buffer\> A compressed file buffer that can be written to disk
+- Returns: <Promise<Buffer\>\> A compressed file buffer that can be written to disk
 
 ### `readSignature(buffer)`
 Read a compressed file signature.
