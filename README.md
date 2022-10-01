@@ -11,7 +11,7 @@ This module allows you to compress and decompress Supercell assets. It supports 
 
 The module automatically finds the right signature when decompress function is called.
 ## Install
-``npm install sc-compression``
+``npm install git+https://github.com/FourCinnamon0/sc-compression.git``
 ## Available methods
   - decompress(buffer) - returns a Buffer
   - compress(buffer, signature) - returns a Buffer
