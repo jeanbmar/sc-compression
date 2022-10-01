@@ -1,6 +1,6 @@
 {
   "name": "sc-compression",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Compress and decompress Supercell games assets",
   "type": "module",
   "keywords": ["supercell", "clash of clans", "clash royale", "brawl stars"],

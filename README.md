@@ -33,16 +33,17 @@ Read a compressed file signature.
 
 ## Example
 ```js
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { decompress } from 'sc-compression';
 
-const directory = 'coc-13.0.4/logic';
-readdirSync(directory).forEach((file) => {
+const files = await readdir('coc-13.0.4/logic');
+for (const file of files) {
     const filepath = resolve(directory, file);
-    const buffer = readFileSync(filepath);
-    writeFileSync(filepath, decompress(buffer));
-});
+    const buffer = await readFile(filepath);
+    const decompressed = await decompress(buffer);
+    await writeFile(filepath, decompressed);
+}
 ```
 See tests for additional implementation examples.
 
