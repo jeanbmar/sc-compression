@@ -2,14 +2,16 @@
 This module is intended to compress and decompress Supercell assets.  
 It supports the following signatures:
 
-| signature | description |
-| --- | --- |
-| `'none'` | non-compressed file |
-| `'lzma'` | starts with bytes 0x5d0000 |
-| `'sc'` | starts with "SC" |
-| `'sc2'` | starts with "SC" and contains "START" |
-| `'sclz'` | starts with "SC" and contains "SCLZ" |
-| `'sig'` | starts with "Sig:" |
+| signature | description | decompression | compression |
+| --- | --- |:---:|:---:|
+| `none` | non-compressed file | ✔️| ✔️|
+| `lzma` | starts with bytes 0x5d0000 | ✔️| ✔️|
+| `sc` | starts with "SC" | ✔️| ✔️|
+| `sclz` | starts with "SC" and contains "SCLZ" | ✔️| ✔️|
+| `sig` | starts with "Sig:" | ✔️| ✔️ 🚩 |
+| `sc2` | starts with "SC" and contains "START" | ✔️| |
+| `zstd` | contains 0x28b52ffd | ✔️| |
+
 
 The module automatically infers the right signature when `decompress` is called.
 ## Install
