@@ -1,6 +1,6 @@
 {
   "name": "sc-compression",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Compress and decompress Supercell games assets",
   "type": "module",
   "keywords": ["supercell", "clash of clans", "clash royale", "brawl stars"],
@@ -13,7 +13,8 @@
   "author": "Jean-Baptiste Martin",
   "license": "MIT",
   "dependencies": {
-    "lzma-native": "^8.0.6"
+    "lzma-native": "^8.0.6",
+    "zstd-codec": "^0.1.4"
   },
   "devDependencies": {
     "mocha": "^10.0.0",

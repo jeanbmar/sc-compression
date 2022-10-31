@@ -64,4 +64,9 @@ describe('sc-compression', () => {
     const decompressed = await decompress(buffer);
     assert(decompressed.toString('hex').length > 0);
   });
+  it('coc 15.0.3', async () => {
+    const buffer = await fsp.readFile(path.join(__dirname, 'assets/zstd.sc'));
+    const decompressed = await decompress(buffer);
+    assert(decompressed.toString('hex').length > 0);
+  });
 });
